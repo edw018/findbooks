@@ -1,12 +1,14 @@
 * {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     outline: none; 
+    background-color: rgba(0,0,0,0.2);
 }
 .display-none{
     display: none;
 }
 
 body,html{
+    background-color: white;
     height: 100%;
     width: 100%;
     margin: 0;
@@ -14,11 +16,7 @@ body,html{
 }
 body {
     font: 18px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    /*line-height: 1.4em;*/
-    background: #1A5C29;
     color: white;
-    /*width: 550px;*/
-    /*margin: 0 auto;*/
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
     -ms-font-smoothing: antialiased;
@@ -34,8 +32,7 @@ body.ios{
 button {
     margin: 0;
     padding: 0;
-    border: 0;
-    background: none;
+    border: 1px solid black;
     font-size: 100%;
     vertical-align: baseline;
     font-family: inherit;
@@ -44,9 +41,17 @@ button {
     -ms-appearance: none;
     -o-appearance: none;
     appearance: none;
-    border: 1px solid black;
-    height: 40px;
-    padding: 10px;
+    text-align: center;
+    height: 2.5em;
+    margin-bottom: 0.5em;
+    padding: 0.3em;
+    display: block;
+}
+button.c1{
+    width: 100%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 input, select{
@@ -57,6 +62,21 @@ input, select{
     width: 100%;
     height: 100%;
     overflow: hidden;
+}
+.application .front{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(0,0,0,0.6);
+    /*background: rgba(0,0,0,0);*/
+}
+.application .front.show{
+    /*background: rgba(0,0,0,0.6);*/
+}
+.application .deep{
+    width: 100%;
+    height: 100%;
+    position: absolute;
 }
 
 .animate{
@@ -70,15 +90,14 @@ input, select{
 .doble-column{
     width: 100%;
     position: absolute;
-    /*width: 100%;*/
     height: 100%;
     top: 0;
     left: 0;
--webkit-transform-origin: 0px 0px;
--webkit-transform: translate3d(0px, 0px, 0px) scale(1);
+    -webkit-transform-origin: 0px 0px;
+    -webkit-transform: translate3d(0px, 0px, 0px) scale(1);
 }
 .doble-column.show-right{
--webkit-transform: translate3d(-60%, 0px, 0px) scale(1);
+    -webkit-transform: translate3d(-60%, 0px, 0px) scale(1);
 }
 .doble-column.show-right.show-sidebar{
     -webkit-transform: translate3d(40%, 0px, 0px) scale(1);
@@ -89,17 +108,26 @@ input, select{
 .doble-column .column{
     width: 80%;
     position: absolute;
-    background-image: url(../images/noise.png);
     height: 100%;
 }
 .doble-column .column.right{
-    background-color: #3D180D;
     float: right;
     left: 80%;
 }
 .doble-column .column.left{
     float: left;
     left: 0;
+}
+.doble-column .column>div{
+    padding-bottom: 44px;
+}
+
+.scrollable{
+    overflow: hidden;
+}
+.scrollable>div{
+    position: absolute;
+    width: 100%;
 }
 
 .sidebar{
@@ -120,31 +148,17 @@ input, select{
 .sidebar.left.show{
     -webkit-transform: translate3d(0%, 0px, 0px) scale(1);
 }
-
-.application .front{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background: rgba(0,0,0,0);
-}
-.application .front.show{
-    background: rgba(0,0,0,0.6);
-}
-.application .deep{
-    width: 100%;
-    height: 100%;
-    position: absolute;
+.sidebar>div{
+    padding-bottom: 44px;
 }
 
 .popup{
     position: absolute;
     left: 2.5%;
     top: 1%;
-    height: 88%;
+    height: 85%;
     width: 95%;
     margin: 0 auto;
-    border-radius: 5px;
-    box-shadow: 1px 3px 50px #000;
     overflow: auto;
     -webkit-transform-origin: 0px 0px;
 }
@@ -154,18 +168,30 @@ input, select{
 .popup.show{
     -webkit-transform: translate3d(0, 0, 0) scale(1);
 }
-.popup > div{
-    /*, .popup > div > div{*/
+.popup > .scrollable{
     height: 100%;
+    position: absolute;
+    width: 100%;
 }
-.popup.have-toolbar > div > div{
-    padding-top:44px;
+.popup .scrollable > div{
+    padding-top:50px;
 }
 .popup.have-toolbar{
-    overflow: hidden;
+    overflow: initial;
 }
-
-
+.popup h1, .popup h2{
+    margin: 0;
+    font-weight: normal;
+}
+.popup .toolbar{
+    display: relative;
+    /*-webkit-transition: -webkit-transform 0ms;*/
+    /*-webkit-transform-origin: 0px 0px;*/
+    /*-webkit-transform: translate3d(-2px, -1px, 0px) scale(1);*/
+    top: -1px !important;
+    left: -1px;
+    padding-right: 3px;
+}
 
 form{
     padding: 10px;
@@ -174,34 +200,28 @@ form label{
     display: block;
     margin-bottom: 10px;
     height: 2em;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid black;
     position: relative;
 }
 form span.label{
-    /*display: inline;*/
     position: absolute;
-    /*width: 70px;*/
     bottom: 0px;
-    height: 2em;
+    height: 1.6em;
+    padding-top: 0.5em;
+    padding-left: 0.3em;
     text-align: right;
-    /*float: left;*/
-    /*background: blue;*/
 }
 form span.input{
     height: 2em;
     display: block;
     float: right;
-    /*background: red;*/
-    /*border: 1px solid black;*/
 }
 form input, form select{
     height:  2em;
-    /*display: inline-block; */
     float: left;
     background: transparent;
     padding: 0;
     margin: 0;
-    /*text-indent: 75px;*/
     border:none;
     outline: none;
     width: 100%;
@@ -220,13 +240,12 @@ p.medium{
 }
 
 .toolbar{
-    height: 2.2em;
+    height: 50px;
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     z-index: 300000;
-    /*text-align: center;*/
 }
 .toolbar.top{
     top: 0;
@@ -235,10 +254,27 @@ p.medium{
     position: fixed;
 }
 .toolbar .center{
-    width: auto; 
-    padding: 0 44px;
+    width: 100%;
     text-align: center;
-    padding-top: 5px;
+    position: absolute;
+    top: 0;
+    z-index: -20;
+}
+.toolbar .search-input{
+    padding: 0 50px 0 50px;
+}
+.toolbar .search-input input{
+    margin: 4px 0;
+    height: 40px;
+    width: 100%;
+    font-family: inherit;
+    font-size: 1em;
+    background: transparent;
+    border: none;
+    padding: 5px 0;
+    letter-spacing: 0.1em;
+}
+.toolbar .left{
 }
 .toolbar h1{
     margin: 0;
@@ -246,42 +282,27 @@ p.medium{
     font-weight: 200;
 }
 .toolbar .center h1{
-    font-size: 1.5em;
+    font-size: 24pt;
 }
 .toolbar .left h1{
-    padding: 0.5em;
-    font-size: 1em;
+    padding: 10pt;
+    font-size: 16pt;
 }
 .toolbar .hide{
     display: none;
 }
-
-.toolbar input{
-    margin: 4px 0;
-    height: 1.2em;
-    /*display: block;*/
-    width: 100%;
-    font-family: inherit;
-    font-size: 1.5em;
-    background: transparent;
-    border: none;
-    padding: 5px 0;
-    border-bottom: 2px solid yellow;
-    color: yellow;
-}
 .toolbar button {
-    width: 32px;
-    height: 1.5em;
-    border: 1px solid #0B1E33;
-    border-radius: 5px;
+    width: 40px;
+    height: 40px;
     top: 0;
     padding: 0;
-    position: absolute;
     margin: 5px;
+    text-indent: -500px;
 }
 .toolbar button.text{
     width: auto;
     padding: 0 15px;
+    text-indent: 0;
 }
 .toolbar button.left{
     left: 0px;
@@ -291,39 +312,62 @@ p.medium{
     right: 0px;
     float: right;
 }
+.toolbar .title-app h1 {
+    padding-top: 0.2em;
+}
 
-.full-view{
+.view.full{
     height: 100%;
 }
-
-.column{
-    overflow: auto !important;
+.view .centered{
+    max-width: 15em;
+    margin: 0 auto;
 }
-.column ul{
+.view .inner{
+    padding: 10px;
+}
+
+ul{
     margin: 0;
     padding: 0;
-    /*display: inline-block;*/
 }
-.column>div{
-    position: absolute;
-    width: 100%;
-    padding-bottom: 44px;
-}
-.column li{
+ul.grid li{
     list-style: none;
     display: block;
     float: left;
-    -webkit-perspective: 800;
-    -webkit-perspective-origin: 60% 60%;
+}
+ul.vertical li img {
+    height: 2.5em;
+    width: 2em;
+    float: left;
+    margin: 5px;
+}
+ul.vertical li p {
+    margin: 0;
+    padding: 0 10px;
+}
+ul.vertical li a{
+    display: block;
+    height: 100%;
+}
+ul.vertical li {
+    list-style: none;
+    height: 3em;
+    padding: 5px 0;
+    border-top: 1px solid black;
+}
+ul .right{
+    float: right;
+}
+ul button{
+    margin: 5px;
 }
 
-
+/*Es el unico que se le permite tener un nombre tan especifico*/
 .book{
-    overflow: hidden;
+    /*overflow: hidden;  para que tenia esto?*/ 
     margin: 10px;
-    /*float: left;*/
     position: relative;
-    -webkit-transition: -webkit-transform .4s ease-out;
 }
 .book.small{
     height: 150px;
@@ -335,25 +379,57 @@ p.medium{
 }
 .book img{
     width: 100%;
-    height: 85%;
+    height: 100%;
 }
 .book p{
     display: block;
-    height: 15%;
-    /*width: 100%;*/
-    overflow: hidden;
-    text-overflow: ellipsis;
+    padding: 0.5em;
+    font-size: 0.8em;
+    height: 1.5em;
     margin: 0;
     text-align: center;
-    white-space: nowrap;
 }
-.book.rotate {
-    -webkit-transform: rotateY(-180deg);
-    -webkit-transition: -webkit-transform .4s ease-out;
+
+.ellipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .image.left{
     float: left;
+}
+
+.loading{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 500000;
+    background-color: rgba(0,0,0,0.25);
+}
+.loading div.center{
+    position:absolute;
+    top:45%;
+    width: 100%;
+}
+.loading div.img{
+    display: block;
+    height: 3px;
+    margin: 0 auto;
+    -webkit-animation:rotate 1.1s infinite linear;
+            animation:rotate 1.1s infinite linear;
+}
+
+@-webkit-keyframes rotate{
+0%{-webkit-transform:rotate(0deg)}
+100%{-webkit-transform:rotate(360deg)}
+}
+
+@keyframes rotate{
+0%{transform:rotate(0deg)}
+100%{transform:rotate(360deg)}
 }
 
 .loading-bar.hover{
@@ -369,11 +445,6 @@ p.medium{
     height: 100%;
     width: 0%;
     background-color: blue;
-    /*-webkit-transition: width .25s linear;
-       -moz-transition: width .25s linear;
-        -ms-transition: width .25s linear;
-         -o-transition: width .25s linear;
-            transition: width .25s linear;*/
 }
 
 @media screen and (min-width: 640px) {
@@ -398,11 +469,20 @@ p.medium{
 .book.small{
     height: 242px;
     width: 150px;
-    /*display: inline-block;*/
 }
 
 body{
     font-size: 21px;
+}
+
+.doble-column.show-right{
+    -webkit-transform: translate3d(-10%, 0px, 0px) scale(1);
+}
+.doble-column .column{
+    width: 55%;
+}
+.doble-column .column.right{
+    left: 55%;
 }
 
 }

@@ -5,6 +5,12 @@ var AppView = Parse.View.extend({
   events:{
     "touchstart .scrollable": "refreshScroll",
     "mousedown .scrollable": "refreshScroll",
+    'touchstart button':'buttonActive',
+    'touchend button':'buttonNoActive',
+    'focus form input':'inputFocus',
+    'focus form select':'inputFocus',
+    'blur form input':'inputNoFocus',
+    'blur form select':'inputNoFocus'
   },
   scrollable : [],
   initialize: function() {
@@ -18,7 +24,10 @@ var AppView = Parse.View.extend({
     this.toolbarView = new ToolbarView();
     this.logInView = new LogInView();
     this.makeScrolls();
+    this.addBookView.hide();
     this.currentView = this.homeView;
+    this.$loading = $('div.loading');
+    this.$loading.hide();
       
     if (Parse.User.current()) {
       this.show();
@@ -30,11 +39,32 @@ var AppView = Parse.View.extend({
       // this.currentView = this.logInView;
     }
   },
+  buttonActive:function (e) {
+    console.log('tratando de definir el fake-active');
+    $(e.target).addClass("f-active");
+  },
+  buttonNoActive:function (e) {
+    $(e.target).removeClass("f-active");
+  },
+  inputFocus: function (e) {
+    $(e.target).parent().parent('label').addClass("f-focus");
+  },
+  inputNoFocus: function (e) {
+    $(e.target).parent().parent('label').removeClass("f-focus");
+  },
   hide:function  () {
-    this.$(".view").hide();
+    this.$(".view").not('#login').hide();
+    this.homeView.clearBooks();
+  },
+  loading: function () {
+    this.$loading.fadeIn(100);
+  },
+  notLoading:function () {
+    this.$loading.fadeOut(100);
   },
   show:function  () {
-    this.$(".view").show();
+    this.$(".view").not('#login').show();
+    this.homeView.getBooks();
   },
   updateForms: function(){
     $("form .input").each(function() {

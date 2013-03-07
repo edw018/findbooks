@@ -1,7 +1,8 @@
 var PopupView = Parse.View.extend({
   el: "#all",
   events:{
-    'click .front':'backToHome'
+    'click .front':'backToHomeOutPopup',
+    "click button#close": "backToHome",
   },
   initPopup: function (popupID) {
     this.front = this.$('.front');
@@ -12,6 +13,7 @@ var PopupView = Parse.View.extend({
       this.view.show();
       this.front.addClass("show");
       this.front.show();
+      // this.front.fadeIn(100);
       self = this;
       window.setTimeout(function(){
         self.view.addClass("show");
@@ -28,16 +30,20 @@ var PopupView = Parse.View.extend({
         thereIsPopup = $('.view.show').length;
         if (!thereIsPopup){
           front.removeClass('show');
-          front.hide();
+          this.front.hide();
+          // front.fadeOut(100);
         }
 
       }, 410);
 
     }
   },
-  backToHome:function (e) {
+  backToHomeOutPopup:function (e) {
     if($(e.target).is('.front')){
       appRouter.navigate('', {trigger: true});
     }
+  },
+  backToHome:function () {
+    appRouter.navigate('', {trigger: true});
   }
 });
