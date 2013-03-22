@@ -14,8 +14,38 @@
     <script src="js/underscore-1.1.6.js"></script>
     <script src="js/iscroll-lite.js"></script>
     <script src="js/parse-1.1.15.min.js"></script>
+	<!--<script type="text/javascript" charset="utf8" src="js/cordova-2.3.0.js"></script>-->
   </head>
   <body>
+	  
+<!-- Including facebook functions initialization -->
+	<!-- <div id="fb-root"></div> -->
+	<script>
+		// window.fbAsyncInit = function() {
+		// 	Parse.FacebookUtils.init({
+		// 		appId      : '137720099738614', // Facebook App ID
+		// 		channelUrl : 'themes/channel.html', // Channel File
+		// 		status     : true, // check login status
+		// 		cookie     : true, // enable cookies to allow Parse to access the session
+		// 		xfbml      : true  // parse XFBML
+		// 	});
+			
+		// 	// Additional initialization code here
+		// };
+		  
+		//   // Load the SDK's source Asynchronously
+		//   // Note that the debug version is being actively developed and might
+		//   // contain some type checks that are overly strict.
+		//   // Please report such bugs using the bugs tool.
+		//   (function(d, debug){
+		//    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+		//    if (d.getElementById(id)) {return;}
+		//    js = d.createElement('script'); js.id = id; js.async = true;
+		//    js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
+		//    ref.parentNode.insertBefore(js, ref);
+		//    }(document, /*debug*/ false));
+	</script>
+	  
     <div id="all" class="application">
       <div class="front"></div>
     </div>
@@ -264,6 +294,7 @@
           <input type="password" id="signup-password" placeholder="Create a Password" />
           <button>Sign Up</button>
         </form>
+		    <!--<input type="button" value="Facebook Login" id="FBLoginButton" />-->
       </div></section>
     </script>
 
@@ -281,7 +312,7 @@
     <script type="text/javascript" src="app/views/app.js"></script> 
     <script type="text/javascript" src="app/router.js"></script> 
     <script type="text/javascript" src="app/app.js"></script> 
-    <script type="text/javascript" src="app/generals.js"></script> 
+    <script type="text/javascript" src="app/generals.js"></script>
   </body>
 
 </html>
